@@ -25,43 +25,55 @@ treePointer findMinimum(treePointer currentNode);
 
 int main() {
 	treePointer nodePtr = NULL;
-	nodePtr = insert(nodePtr, 3);
-	nodePtr = insert(nodePtr, 2);
-	nodePtr = insert(nodePtr, 4);
-	nodePtr = insert(nodePtr, 5);
-	nodePtr = insert(nodePtr, 1);
-	printf("inorder : ");
+	int input = 0;
+    while (1) {
+        printf("input value : ");
+		scanf("%d", &input);
+		if (input == -1) break;
+		nodePtr = insert(nodePtr, input);
+    }
 	inorder(nodePtr);
 	printf("\n");
+	input = 0;
 
-	insert(nodePtr, 8);
+	while (1) {
+		printf("\n");
+		printf("(1)input (2)delete (3)search (4)list (5)quit\n");
+		scanf("%d", &input);
+        switch (input) {
+            case 1:
+                printf("input value : ");
+				scanf("%d", &input);
+				nodePtr = insert(nodePtr, input);
+                break;
 
-	printf("inorder : ");
-	inorder(nodePtr);
-	printf("\n");
+			case 2:
+				printf("input value : ");
+				scanf("%d", &input);
+				nodePtr = deleteNode(nodePtr, input);
+				break;
+
+			case 3:
+				printf("input value : ");
+				scanf("%d", &input);
+				if (search(nodePtr, input) != NULL)
+					printf("%d", search(nodePtr, input)->key);
+				else
+					printf("NULL");
+				printf("\n");
+				break;
+				
+			case 4:
+				inorder(nodePtr);
+				break;
+			case 5:
+				return 0;
+
+            default:
+                break;
+        }
+    }
 	
-	deleteNode(nodePtr, 4);
-
-	printf("inorder : ");
-	inorder(nodePtr);
-	printf("\n");
-
-	printf("%d", search(nodePtr, 3)->key);
-	printf("\n");
-
-	if(iterSearch(nodePtr, 10) != NULL)
-		printf("%d", iterSearch(nodePtr, 3)->key);
-	else
-		printf("NULL");
-
-	printf("\n");
-
-	if(iterSearch(nodePtr, 3) != NULL)
-		printf("%d", iterSearch(nodePtr, 10)->key);
-	else
-		printf("NULL");
-		
-	printf("\n");
 	return 0;
 }
 
@@ -92,7 +104,6 @@ element* iterSearch(treePointer nodePtr, int k) {
 	}
 	return NULL;
 }
-
 treePointer createNode(int key) {
 
 	//treePointer newNode = (node*)malloc(sizeof(node));
@@ -144,7 +155,6 @@ treePointer deleteNode(treePointer currentNode, int key) {
 }
 
 treePointer findMinimum(treePointer currentNode) {
-
 	if (currentNode->left_child == NULL)
 		return currentNode;
 
