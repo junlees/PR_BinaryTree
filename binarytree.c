@@ -105,7 +105,6 @@ element* iterSearch(treePointer nodePtr, int k) {
 	return NULL;
 }
 treePointer createNode(int key) {
-
 	//treePointer newNode = (node*)malloc(sizeof(node));
 	treePointer newNode = (treePointer)malloc(sizeof(node));
 
@@ -129,7 +128,7 @@ treePointer insert(treePointer nodePtr, int key) {
 }
 
 treePointer deleteNode(treePointer currentNode, int key) {
-		if (currentNode == NULL) {
+	if (currentNode == NULL) {
 		return NULL;
 	}
 	else if (key < currentNode->data.key) {
